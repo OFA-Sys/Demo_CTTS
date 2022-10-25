@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://leiyi420.github.io/MsEmoTTS/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Free Text Control Text to Speech</title>
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="TODO: title">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://leiyi420.github.io/HierarchicalEmoTTS/">
+<meta property="og:url" content="https://leiyi420.github.io/HierarchicalEmoTTS/">
+<meta name="twitter:card" content="summary">
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1001.0" data-gr-ext-installed="">
+    <section class="page-header">
+    <!-- <h1 class="project-name">Demo PAGE</h1> -->
+    <!-- <h2 class="project-tagline"></h2> -->
+      
+      
+    </section>
+
+<section class="main-content">
+      <h1 id=""><center>Free Text Control Text to Speech</center></h1>
+
+<center> Jianhong Tu<sup>1</sup>, Zeyu Cui<sup>2</sup>, Xinsheng Wang<sup>3</sup>, Lei Xie<sup>1</sup> </center>
+    <center> <sup>1</sup> Northwestern Polytechnical University, China</center>
+    <center> <sup>2</sup> Tencent AI Lab, China</center>
+    <center> <sup>3</sup> Xi’an Jiaotong University, China</center>
+	
+<h2>0. Contents</h2>
+<ol>
+  <li><a href="#abstract">Abstract</a></li>
+  <li><a href="#transfer">Demos -- Emotional speech synthesis by transferring the emotion from reference audio</a></li>
+  <li><a href="#prediction">Demos -- Emotional speech synthesis by predicting the emotion from input text</a></li>
+  <li><a href="#control">Demos -- Emotional speech synthesis by manual control</a></li>
+  <li><a href="#gm">Demos -- Global-level emotion presenting module (GM)</a></li>
+  <li><a href="#um">Demos -- Utterance-level emotion presenting module (UM)</a></li>
+</ol>
+
+<br><br>
+<h2 id="abstract">1. Abstract<a name="abstract"></a></h2>
+<p> Expressive synthetic speech is essential for many human-computer interaction and audio broadcast scenarios, and thus synthesizing expressive speech has attracted much attention in recent years. Previous methods performed the expressive speech synthesis either with explicit labels or with a fixed-length style embedding extracted from reference audio, both of which can only learn an average style and thus ignores the multi-scale nature of speech prosody. In this paper, we propose MsEmoTTS, a multi-scale emotional speech synthesis framework, to model the emotion from different levels. Specifically, the proposed method is a typical attention-based sequence-to-sequence model but with proposed three modules, including global-level emotion presenting module (GM), utterance-level emotion presenting module (UM), and local-level emotion presenting module (LM), to model the global emotion category, utterance-level emotion variation, and syllable-level emotion strength, respectively. In addition to modeling the emotion from different levels, the proposed method also allows us to synthesize emotional speech in different ways, i.e., transferring the emotion from reference audio, predicting the emotion from input text, and controlling the emotion strength manually. Extensive experiments conducted on a Chinese emotional speech corpus demonstrate that the proposed method outperforms the compared reference audio-based and text-based emotional speech synthesis methods on the emotion transfer speech synthesis and text-based emotion prediction speech synthesis respectively. Besides, the experiments also show that the proposed method can control the emotion expressions flexibly. Detail analysis is conducted to show the effectiveness of each module and the good design of the proposed method.
+</p>
+	<center><img src='fig/achitechture-overview_wxs-color.jpg'></center>
+<br><br>
+
+<h2>2. Demos -- Emotional speech synthesis by transferring the emotion from reference audio<a name="transfer"></a></h2>
+<h3>Corresponding to Section 5.1 in our paper, below lists the samples that are synthesized for evaluations on the emotion transfer task. We compared MsEmoTTS (proposed) with the GST model on both parallel and non-parallel emotion transfer.</h3>
+<p>Parallel emotion transfer: the input text is the same as the transcription of reference audio.</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Emotion</strong></th>
+      <th style="text-align: center"><strong>Reference</strong></th>
+      <th style="text-align: center"><strong>GST</strong></th>
+      <th style="text-align: center"><strong>MsEmoTTS (Proposed)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+	<tr>
+	  <td style="text-align: left" rowspan=2>Happiness</td>
+	  <td style="text-align: left" colspan=3>Text: 我要写一篇下周一要交的论文。(English: I'm going to write a paper to be submitted on next Monday.)</td>
+	</tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/reference/211851.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/baseline-gst-trim/211851.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/proposed-trim/211851.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Anger</td>
+	  <td style="text-align: left" colspan=3>Text: 就因为我们反对李超那害群新法。(English: Just because we oppose Li Chao's new law.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/reference/221401.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/baseline-gst-trim/221401.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/proposed-trim/221401.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Sadness</td>
+	  <td style="text-align: left" colspan=3>Text: 注定我要在思念的路上走一段吧。(English: I'm destined to walk on the road of missing.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/reference/230872.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/baseline-gst-trim/230872.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/proposed-trim/230872.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Surprise</td>
+	  <td style="text-align: left" colspan=3>Text: 众人的冷嘲热讽使他如芒刺背，坐立不安。(English: The cynicism of the crowd made him on tenterhooks and disturbed.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/reference/240884.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/baseline-gst-trim/240884.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/proposed-trim/240884.wav" controls="" preload=""></audio></td>
+    </tr>
+   <tr>
+      <td style="text-align: left" rowspan=2>Fear</td>
+	  <td style="text-align: left" colspan=3>Text: 大灰狼露出了它锋利的牙齿。(English: The big bad wolf showed its sharp teeth.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/reference/251177.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/baseline-gst-trim/251177.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/proposed-trim/251177.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Disgust</td>
+	  <td style="text-align: left" colspan=3>Text: 还真的觉得自己美如天仙啊。(English: Really you think you are as beautiful as a fairy.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/reference/261013.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/baseline-gst-trim/261013.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/parallel/proposed-trim/261013.wav" controls="" preload=""></audio></td>
+    </tr>
+   
+  </tbody>
+</table>
+
+<p>Non-parallel emotion transfer: the input text is different from the transcription of reference audio.</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Emotion</strong></th>
+      <th style="text-align: center"><strong>Reference</strong></th>
+      <th style="text-align: center"><strong>GST</strong></th>
+      <th style="text-align: center"><strong>MsEmoTTS (Proposed)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left" rowspan=2>Happiness</td>
+      <td style="text-align: left" colspan=3>Text: 日子够苦的了，我们得互相体谅。(English: Days are hard enough, we should understand each other.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/reference/231468-210177.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/baseline-gst-trim/231468-210177.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/proposed-trim/231468-210177.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Anger</td>
+      <td style="text-align: left" colspan=3>Text: 单身狗我在家，防止受到一万点伤害。(English: As a single man, I'm at home to prevent the serious injury.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/reference/211926-221222.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/baseline-gst-trim/211926-221222.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/proposed-trim/211926-221222.wav" controls="" preload=""></audio></td>
+    </tr>
+      <tr>
+      <td style="text-align: left" rowspan=2>Sadness</td>
+	  <td style="text-align: left" colspan=3>Text: 第一次登上领奖台，我又紧张又兴奋。(English: For the first time on the podium, I was nervous and excited.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/reference/250188-231468.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/baseline-gst-trim/250188-231468.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/proposed-trim/250188-231468.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Surprise</td>
+	  <td style="text-align: left" colspan=3>Text: 保罗沃克去世了，一个时代结束了。(English: Paul Walker died, and an era was over.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/reference/230722-241686.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/baseline-gst-trim/230722-241686.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/proposed-trim/230722-241686.wav" controls="" preload=""></audio></td>
+    </tr>
+   <tr>
+      <td style="text-align: left" rowspan=2>Fear</td>
+	  <td style="text-align: left" colspan=3>Text: 区区一小鬼，也敢在我面前大言不惭！(English: You, just a kid, dare to brag unblushingly in my presence!)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/reference/221323-250188.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/baseline-gst-trim/221323-250188.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/proposed-trim/221323-250188.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Disgust</td>
+	  <td style="text-align: left" colspan=3>Text:这不公平 ，怎么能这样对我，好气呀！(English: It's not fair! How can you treat me in this way! How angry!)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/reference/221222-260451.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/baseline-gst-trim/221222-260451.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion transfer/non-parallel/proposed-trim/221222-260451.wav" controls="" preload=""></audio></td>
+    </tr>
+   
+  </tbody>
+</table>
+<p><b>Short summary:</b> Experiment results for both parallel and non-parallel emotion transfer demonstrate that the proposed method can convey emotion information from the reference audio effectively, and achieves superiority on the reference audiobased emotional speech synthesis compared with the GST model.</p>
+
+
+<br><br>
+<h2>3. Demos -- Emotional speech synthesis by predicting the emotion from input text<a name="prediction"></a></h2>
+<h3>Corresponding to Section 5.2 in our paper, below lists the samples that are synthesized for evaluations on emotion prediction from input text only. We compared MsEmoTTS (proposed) with the TPSE-GST model.</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Emotion</strong></th>
+      <th style="text-align: center"><strong>TPSE-GST</strong></th>
+      <th style="text-align: center"><strong>Proposed</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left" rowspan=2>Happiness</td>
+	  <td style="text-align: left" colspan=2>Text: 老师今天好开心呐！(English: The teacher is so happy today!)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/tp-gst-trim/220265.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/220265.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Anger</td>
+	  <td style="text-align: left" colspan=2>Text: 我那个妻子气得我简直要暴跳如雷了。(English: My wife makes me angry to stamp with rage.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/tp-gst-trim/240344.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/240344.wav" controls="" preload=""></audio></td>
+    </tr>
+      <tr>
+      <td style="text-align: left" rowspan=2>Sadness</td>
+	  <td style="text-align: left" colspan=2>Text: 看你伤心，我都伤心了。(English: Seeing you sad, I'm so sad.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/tp-gst-trim/230246.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/230246.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Surprise</td>
+	  <td style="text-align: left" colspan=2>Text: 啊？什么行不行的？(English: Ah? What is ok or not?)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/tp-gst-trim/210365.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/210365.wav" controls="" preload=""></audio></td>
+    </tr>
+   <tr>
+      <td style="text-align: left" rowspan=2>Fear</td>
+	  <td style="text-align: left" colspan=2>Text: 太可怕了，我看到小绵羊被马桶吃掉了！(English: It's terrible! I saw the little sheep eaten by the closestool.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/tp-gst-trim/260465.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/260465.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Disgust</td>
+	  <td style="text-align: left" colspan=2>Text: 他这背信的人，令人厌恶。(English: He is treacherous and disgusting.)</td>
+	</tr>
+	<tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/tp-gst-trim/250465.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/250465.wav" controls="" preload=""></audio></td>
+    </tr>
+   
+  </tbody>
+</table>
+<p><b>Short summary:</b> The higher emotion naturalness MOS scores of MsEmoTTS than TPSE-GST demonstrate that MsEmoTTS is suitable for emotional speech synthesis by predicting the emotion from input text only.</p>
+
+<br><br>
+<h2>4. Demos -- Emotional speech synthesis by manual control<a name="control"></a></h2>
+<h3>Corresponding to Section 5.3 in our paper, below lists the samples that are synthesized for presenting the ability of emotional speech synthesis by manual control. For the same input text, different global emotion categories and local emotion strengths are utilized to synthesize emotional speech with different expressions.
+''All strengths 0'' and ''All strengths 1'' below represent all syllable strengths in the utterance are appointed to 0 or 1 for the manual labels in emotional TTS.
+''Strength increasing'' and ''Strength decreasing'' below represent local emotion strengths gradually increase or decrease within an utterance.</h3>
+<p>Text: 舒家姐妹现在的人气很高啊。(English: The sisters of Shu are very popular now.)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Emotion</strong></th>
+      <th style="text-align: center"><strong>All strengths 0</strong></th>
+      <th style="text-align: center"><strong>All strengths 1</strong></th>
+      <th style="text-align: center"><strong>F0 curves</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Happiness</td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/21-211448_0.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/21-211448_1.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><img src="fig/control/all01/21.png" height="150"></img></td>
+
+    </tr>
+    <tr>
+      <td style="text-align: left">Anger</td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/22-211448_0.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/22-211448_1.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><img src="fig/control/all01/22.png" height="150"></img></td>
+    </tr>
+      <tr>
+      <td style="text-align: left">Sadness</td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/23-211448_0.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/23-211448_1.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><img src="fig/control/all01/23.png" height="150"></img></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Surprise</td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/24-211448_0.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/24-211448_1.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><img src="fig/control/all01/24.png" height="150"></img></td>
+    </tr>
+   <tr>
+      <td style="text-align: left">Fear</td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/25-211448_0.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/25-211448_1.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><img src="fig/control/all01/25.png" height="150"></img></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Disgust</td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/26-211448_0.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion control/01-trim/26-211448_1.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><img src="fig/control/all01/26.png" height="150"></img></td>
+    </tr>
+   
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Emotion</strong></th>
+      <th style="text-align: center"><strong>Strength increasing</strong></th>
+	  <th style="text-align: center"><strong>Strength decreasing</strong></th>
+	  <th style="text-align: center"><strong>F0 curves</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Happiness</td>	  
+      <td style="text-align: left"><audio src="samples/emotion control/g-trim/21-211448_gu.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><audio src="samples/emotion control/g-trim/21-211448_gd.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><img src="fig/control/g/21.png" height="150"></img></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Anger</td>
+      <td style="text-align: left"><audio src="samples/emotion control/g-trim/22-211448_gu.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><audio src="samples/emotion control/g-trim/22-211448_gd.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><img src="fig/control/g/22.png" height="150"></img></td>
+    </tr>
+      <tr>
+      <td style="text-align: left">Sadness</td>
+      <td style="text-align: left"><audio src="samples/emotion control/g-trim/23-211448_gu.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><audio src="samples/emotion control/g-trim/23-211448_gd.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><img src="fig/control/g/23.png" height="150"></img></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Surprise</td>
+      <td style="text-align: left"><audio src="samples/emotion control/g-trim/24-211448_gu.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><audio src="samples/emotion control/g-trim/24-211448_gd.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><img src="fig/control/g/24.png" height="150"></img></td>
+    </tr>
+   <tr>
+      <td style="text-align: left">Fear</td>
+      <td style="text-align: left"><audio src="samples/emotion control/g-trim/25-211448_gu.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><audio src="samples/emotion control/g-trim/25-211448_gd.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><img src="fig/control/g/25.png" height="150"></img></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Disgust</td>
+      <td style="text-align: left"><audio src="samples/emotion control/g-trim/26-211448_gu.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><audio src="samples/emotion control/g-trim/26-211448_gd.wav" controls="" preload=""></audio></td>
+	  <td style="text-align: left"><img src="fig/control/g/26.png" height="150"></img></td>
+    </tr>
+   
+  </tbody>
+</table>
+<p><b>Short summary:</b> The results for all emotions indicate that the local emotion strength and global emotion category of synthetic speech can be manually controlled successfully.</p>
+
+<br><br>
+<h2> 5. Demos -- Component analysis - Global-level emotion presenting module (GM)<a name="gm"></a></h2>
+<h3>Corresponding to Section 6.1 in our paper, below lists the samples that are synthesized for evaluations on GM. We compared the consistency of the generated emotion expressions with input text of our proposed ''soft'' emotion embeddings and the conventional ''hard'' emotion embeddings in emotion prediction. ''P-h'' represents the model as same as our proposed model except the global emotion renders are conventional ''hard'' emotion embeddings.</h3>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Emotion</strong></th>
+      <th style="text-align: center"><strong>P-h</strong></th>
+      <th style="text-align: center"><strong>MsEmoTTS (Proposed)</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left" rowspan=2>Happiness</td>
+      <td style="text-align: left" colspan=2>Text: 老师今天好开心呐！(English: The teacher is so happy today!)</td>
+    </tr> 
+    <tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/pred-id-trim/220265.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/220265.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Anger</td>
+      <td style="text-align: left" colspan=2>Text: 我那个妻子气得我简直要暴跳如雷了。(English: My wife makes me angry to stamp with rage.)</td>
+    </tr> 
+    <tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/pred-id-trim/240344.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/240344.wav" controls="" preload=""></audio></td>
+    </tr>
+      <tr>
+      <td style="text-align: left" rowspan=2>Sadness</td>
+      <td style="text-align: left" colspan=2>Text: 看你伤心，我都伤心了。(English: Seeing you sad, I'm so sad.)</td>
+    </tr> 
+    <tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/pred-id-trim/230246.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/230246.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Surprise</td>
+      <td style="text-align: left" colspan=2>Text: 啊？什么行不行的？(English: Ah? What is ok or not?)</td>
+    </tr> 
+    <tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/pred-id-trim/210365.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/210365.wav" controls="" preload=""></audio></td>
+    </tr>
+   <tr>
+      <td style="text-align: left" rowspan=2>Fear</td>
+      <td style="text-align: left" colspan=2>Text: 太可怕了，我看到小绵羊被马桶吃掉了！(English: It's terrible! I saw the little sheep eaten by the closestool.)</td>
+    </tr> 
+    <tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/pred-id-trim/260465.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/260465.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Disgust</td>
+      <td style="text-align: left" colspan=2>Text: 他这背信的人，令人厌恶。(English: He is treacherous and disgusting.)</td>
+    </tr> 
+    <tr>
+      <td style="text-align: left"><audio src="samples/emotion prediction/pred-id-trim/250465.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/emotion prediction/propose-weights-trim/250465.wav" controls="" preload=""></audio></td>
+    </tr>
+   
+  </tbody>
+</table>
+<p><b>Short summary:</b> The emotion naturalness MOS scores indicate the effectiveness of the proposed soft emotion embedding method.</p>
+
+<br><br>
+<h2> 6. Demos -- Component analysis - Utterance-level emotion presenting module (UM)<a name="um"></a></h2>
+<h3>Corresponding to Section 6.2 in our paper, below lists the samples that are synthesized for evaluating the effectiveness of UM. ''w/o'' means without and ''w'' mean with. We compare the similarity of generated emotion expressions from reference audio on the emotion transfer task.</h3>
+<p>Parallel emotion transfer</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Emotion</strong></th>
+      <th style="text-align: center"><strong>Reference</strong></th>
+      <th style="text-align: center"><strong>w/o UM</strong></th>
+      <th style="text-align: center"><strong>w UM</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left" rowspan=2>Happiness</td>
+      <td style="text-align: left" colspan=3>Text: 舒家姐妹现在的人气很高啊。(English: The sisters of Shu are very popular now.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/parallel/reference/211448.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/baseline-trim/211448.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/proposed-trim/211448.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Anger</td>
+      <td style="text-align: left" colspan=3>Text: 就因为我们反对李超那害群新法。(English: Just because we oppose Li Chao's new law.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/parallel/reference/221401.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/baseline-trim/221401.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/proposed-trim/221401.wav" controls="" preload=""></audio></td>
+    </tr>
+      <tr>
+      <td style="text-align: left" rowspan=2>Sadness</td>
+      <td style="text-align: left" colspan=3>Text: 当爱情来临，当然也是快乐的。(English: Certainly you feel happy when love comes.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/parallel/reference/231744.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/baseline-trim/231744.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/proposed-trim/231744.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Surprise</td>
+      <td style="text-align: left" colspan=3>Text: 每一次他要张嘴说话，他的外交顾问竟然都会紧张。(English: Every time he opened his mouth to speak, his diplomatic advisers would be nervous.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/parallel/reference/240890.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/baseline-trim/240890.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/proposed-trim/240890.wav" controls="" preload=""></audio></td>
+    </tr>
+   <tr>
+      <td style="text-align: left" rowspan=2>Fear</td>
+      <td style="text-align: left" colspan=3>Text: 快跑啊，海盗们都要冲上来了。(English: Run! The pirates are coming up.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/parallel/reference/251190.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/baseline-trim/251190.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/proposed-trim/251190.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Disgust</td>
+      <td style="text-align: left" colspan=3>Text: 这姑娘的婚事是令人憎恶的，现在能得以幸免是天大的喜事。(English: The girl's marriage was abominable, and it's a great joy to be spared now.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/parallel/reference/261493.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/baseline-trim/261493.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/parallel/proposed-trim/261493.wav" controls="" preload=""></audio></td>
+    </tr>
+   
+  </tbody>
+</table>
+
+<p>Non-parallel emotion transfer</p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>Emotion</strong></th>
+      <th style="text-align: center"><strong>Reference</strong></th>
+      <th style="text-align: center"><strong>w/o UM</strong></th>
+      <th style="text-align: center"><strong>w UM</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left" rowspan=2>Happiness</td>
+      <td style="text-align: left" colspan=3>Text: 这不公平 ，怎么能这样对我，好气呀！(English: It's not fair! How can you treat me in this way! How angry!)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/reference/221222-211926.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/baseline-trim/221222-211926.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/proposed-trim/221222-211926.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Anger</td>
+      <td style="text-align: left" colspan=3>Text: 单身狗我在家，防止受到一万点伤害。(English: As a single man, I'm at home to prevent the serious injury.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/reference/211926-221323.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/baseline-trim/211926-221323.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/proposed-trim/211926-221323.wav" controls="" preload=""></audio></td>
+    </tr>
+      <tr>
+      <td style="text-align: left" rowspan=2>Sadness</td>
+      <td style="text-align: left" colspan=3>Text: 交到知心朋友，是多么快乐的事啊。(English: How happy it is to make close friends.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/reference/210177-231468.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/baseline-trim/210177-231468.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/proposed-trim/210177-231468.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Surprise</td>
+      <td style="text-align: left" colspan=3>Text: 你会说话就多说几句，没人拦你。(English: Say more if you are good at speaking, and no one will stop you.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/reference/261429-241686.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/baseline-trim/261429-241686.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/proposed-trim/261429-241686.wav" controls="" preload=""></audio></td>
+    </tr>
+   <tr>
+      <td style="text-align: left" rowspan=2>Fear</td>
+      <td style="text-align: left" colspan=3>Text: 他们出卖国家，遭到人民的唾弃。(English: They betrayed their country and were despised by the people.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/reference/260451-250944.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/baseline-trim/260451-250944.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/proposed-trim/260451-250944.wav" controls="" preload=""></audio></td>
+    </tr>
+    <tr>
+      <td style="text-align: left" rowspan=2>Disgust</td>
+      <td style="text-align: left" colspan=3>Text: 交到知心朋友，是多么快乐的事啊。(English: How happy it is to make close friends.)</td>
+  </tr>
+    <tr>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/reference/210177-260451.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/baseline-trim/210177-260451.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/um/non-parallel/proposed-trim/210177-260451.wav" controls="" preload=""></audio></td>
+    </tr>
+   
+  </tbody>
+</table>
+<p><b>Short summary:</b> The results of CMOS and A/B preference test indicate the effectiveness of modeling the utterance-level variation for the emotional speech synthesis, and also demonstrates the good design of the proposed UM.</p>
+
+
+      <footer class="site-footer">
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+</body></html>
