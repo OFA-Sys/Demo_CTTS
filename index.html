@@ -6,10 +6,10 @@
 <!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Free Text Control Text to Speech</title>
 <meta name="generator" content="Jekyll v3.9.0">
-<meta property="og:title" content="TODO: title">
+<meta property="og:title" content="Free Text Control Text to Speech">
 <meta property="og:locale" content="en_US">
-<link rel="canonical" href="https://leiyi420.github.io/HierarchicalEmoTTS/">
-<meta property="og:url" content="https://leiyi420.github.io/HierarchicalEmoTTS/">
+<link rel="canonical" href="https://OFA-Sys.github.io/Demo_FTTS/">
+<meta property="og:url" content="https://OFA-Sys.github.io/Demo_FTTS/">
 <meta name="twitter:card" content="summary">
 <!-- End Jekyll SEO tag -->
 
@@ -28,29 +28,28 @@
 <section class="main-content">
       <h1 id=""><center>Free Text Control Text to Speech</center></h1>
 
-<center> Jianhong Tu<sup>1</sup>, Zeyu Cui<sup>2</sup>, Xinsheng Wang<sup>3</sup>, Lei Xie<sup>1</sup> </center>
+<!-- <center> Jianhong Tu<sup>1</sup>, Zeyu Cui<sup>2</sup>, Xinsheng Wang<sup>3</sup>, Lei Xie<sup>1</sup> </center>
     <center> <sup>1</sup> Northwestern Polytechnical University, China</center>
     <center> <sup>2</sup> Tencent AI Lab, China</center>
-    <center> <sup>3</sup> Xi’an Jiaotong University, China</center>
+    <center> <sup>3</sup> Xi’an Jiaotong University, China</center> -->
 	
 <h2>0. Contents</h2>
 <ol>
   <li><a href="#abstract">Abstract</a></li>
-  <li><a href="#transfer">Demos -- Emotional speech synthesis by transferring the emotion from reference audio</a></li>
-  <li><a href="#prediction">Demos -- Emotional speech synthesis by predicting the emotion from input text</a></li>
-  <li><a href="#control">Demos -- Emotional speech synthesis by manual control</a></li>
-  <li><a href="#gm">Demos -- Global-level emotion presenting module (GM)</a></li>
-  <li><a href="#um">Demos -- Utterance-level emotion presenting module (UM)</a></li>
+  <li><a href="#transfer">Demos -- Expressive speech synthesis on EmoV-DB</a></li>
+  <li><a href="#prediction">Demos -- Zeroshot Expressive speech synthesis on \" Little Prince \" </a></li>
+  <li><a href="#control">Demos -- Zeroshot Expressive speech synthesis on handwriting </a></li>
 </ol>
 
 <br><br>
 <h2 id="abstract">1. Abstract<a name="abstract"></a></h2>
-<p> Expressive synthetic speech is essential for many human-computer interaction and audio broadcast scenarios, and thus synthesizing expressive speech has attracted much attention in recent years. Previous methods performed the expressive speech synthesis either with explicit labels or with a fixed-length style embedding extracted from reference audio, both of which can only learn an average style and thus ignores the multi-scale nature of speech prosody. In this paper, we propose MsEmoTTS, a multi-scale emotional speech synthesis framework, to model the emotion from different levels. Specifically, the proposed method is a typical attention-based sequence-to-sequence model but with proposed three modules, including global-level emotion presenting module (GM), utterance-level emotion presenting module (UM), and local-level emotion presenting module (LM), to model the global emotion category, utterance-level emotion variation, and syllable-level emotion strength, respectively. In addition to modeling the emotion from different levels, the proposed method also allows us to synthesize emotional speech in different ways, i.e., transferring the emotion from reference audio, predicting the emotion from input text, and controlling the emotion strength manually. Extensive experiments conducted on a Chinese emotional speech corpus demonstrate that the proposed method outperforms the compared reference audio-based and text-based emotional speech synthesis methods on the emotion transfer speech synthesis and text-based emotion prediction speech synthesis respectively. Besides, the experiments also show that the proposed method can control the emotion expressions flexibly. Detail analysis is conducted to show the effectiveness of each module and the good design of the proposed method.
-</p>
-	<center><img src='fig/achitechture-overview_wxs-color.jpg'></center>
+<p> The goal of expressive text-to-speech is to synthesize natural speech with high expressiveness considering content, prosody, emotion, timbre, etc. 
+Thanks to the success of deep learning, neural network-based generative model can synthesize expressive speech by providing explicit labels or implicit controlled conditions in recent years. In this paper, we propose to use generalized free text as context to control speech generation for the first time, and we develop an effective end-to-end framework free-text-controlled TTS (FTTS) with four modules. Experiments show that our framework can generate high-quality expressive speech based on the given free text.
+	</p>
+	<center><img src='fig/achitechture-frame2.jpg'></center>
 <br><br>
 
-<h2>2. Demos -- Emotional speech synthesis by transferring the emotion from reference audio<a name="transfer"></a></h2>
+<h2>2. Demos -- Expressive speech synthesis on EmoV-DB<a name="transfer"></a></h2>
 <h3>Corresponding to Section 5.1 in our paper, below lists the samples that are synthesized for evaluations on the emotion transfer task. We compared MsEmoTTS (proposed) with the GST model on both parallel and non-parallel emotion transfer.</h3>
 <p>Parallel emotion transfer: the input text is the same as the transcription of reference audio.</p>
 <table>
