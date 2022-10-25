@@ -46,7 +46,7 @@
 <p> The goal of expressive text-to-speech is to synthesize natural speech with high expressiveness considering content, prosody, emotion, timbre, etc. 
 Thanks to the success of deep learning, neural network-based generative model can synthesize expressive speech by providing explicit labels or implicit controlled conditions in recent years. In this paper, we propose to use generalized free text as context to control speech generation for the first time, and we develop an effective end-to-end framework free-text-controlled TTS (FTTS) with four modules. Experiments show that our framework can generate high-quality expressive speech based on the given free text.
 	</p>
-	<center><img src='fig/frame2.png'></center>
+	<center><img src='fig/frame2.png' style="width: 600px;"></center>
 <br><br>
 
 <h2>2. Demos -- Expressive speech synthesis on EmoV-DB<a name="transfer"></a></h2>
@@ -58,36 +58,32 @@ Thanks to the success of deep learning, neural network-based generative model ca
   <tbody>
     <tr>
       <td style="text-align: center"><strong>Controlling Text</strong></td>
-      <td style="text-align: left" colspan=3> xxxxxxxxxxxxx</td>
+      <td style="text-align: left" colspan=5> xxxxxxxxxxxxx</td>
     </tr>
 	<tr>
 	  <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
-	  <td style="text-align: left" colspan=3> Not at this particular case, Tom, apologized Whittemore. </td>
+	  <td style="text-align: left" colspan=5> Not at this particular case, Tom, apologized Whittemore. </td>
 	</tr>
     <tr>
       <td style="text-align: center" rowspan=1><strong>Label</strong></td>
-      <td style="text-align: left" colspan=3> Emotion: Amused, Speaker: Bea</td>
+      <td style="text-align: left" colspan=5> Emotion: Amused, Speaker: Bea</td>
     </tr>
     <tr>
-      <td style="text-align: center" rowspan=4><strong>Performance</strong></td>
+      <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
       <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td>
       <td style="text-align: center" colspan=1>  <strong>valinaTTS </strong></td>
       <td style="text-align: center" colspan=1>  <strong>FTTS </strong></td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><audio src="samples/test/ref/bea_bea_amused_1-15_0002.wav" controls="" preload=""></audio></td>
-      <td style="text-align: left"><audio src="samples/test/valinaTTS/bea_bea_amused_1-15_0002.wav" controls="" preload=""></audio></td>
-      <td style="text-align: left"><audio src="samples/test/FTTS/bea_bea_amused_1-15_0002.wav" controls="" preload=""></audio></td>
-    </tr>
-    <tr>
       <td style="text-align: center" colspan=1><strong> LTTS</strong> </td>
       <td style="text-align: center" colspan=1> <strong>FTTS_NT </strong></td>
     </tr>
     <tr>
-      <td style="text-align: left"><audio src="samples/test/LTTS/bea_bea_amused_1-15_0002.wav" controls="" preload=""></audio></td>
-      <td style="text-align: left"><audio src="samples/test/FTTS_NT/bea_bea_amused_1-15_0002.wav" controls="" preload=""></audio></td>
-      <td style="text-align: left"> </td>
+      <td style="text-align: left"><audio src="samples/test/ref/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/test/valinaTTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/test/FTTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/test/LTTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/test/FTTS_NT/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>
     </tr>
+
   </tbody>
 </table>
 
