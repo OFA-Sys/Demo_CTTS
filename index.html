@@ -4,9 +4,9 @@
     
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Free Text Control Text to Speech</title>
+<title>Semantic Context-controlled Text-to-Speech</title>
 <meta name="generator" content="Jekyll v3.9.0">
-<meta property="og:title" content="Free Text Control Text to Speech">
+<meta property="og:title" content="Semantic Context-controlled Text-to-Speech">
 <meta property="og:locale" content="en_US">
 <link rel="canonical" href="https://OFA-Sys.github.io/Demo_FTTS/">
 <meta property="og:url" content="https://OFA-Sys.github.io/Demo_FTTS/">
@@ -42,9 +42,10 @@
 
 <br><br>
 <h2 id="abstract">1. Abstract<a name="abstract"></a></h2>
-<p> The goal of expressive text-to-speech is to synthesize natural speech with high expressiveness considering content, prosody, emotion, timbre, etc. 
-Thanks to the success of deep learning, neural network-based generative model can synthesize expressive speech by providing explicit labels or implicit controlled conditions in recent years. In this paper, we propose to use generalized free text as context to control speech generation for the first time, and we develop an effective end-to-end framework free-text-controlled TTS (FTTS) with four modules. Experiments show that our framework can generate high-quality expressive speech based on the given free text.
-	</p>
+<p> The goal of expressive Text-to-speech (TTS) is to synthesize natural speech with high expressiveness given content, prosody, emotion, timbre, etc.
+  Previous works use reference speeches or explicit labels to control TTS. However, reference speeches do not always exist, and explicit labels could merely cover few aspects of speaker's emotion, personality or identity.
+  In this paper, we, for the first time,  introduce a new task setting, \textbf{semantic context-controlled TTS} (CTTS), directly learning the overall information from contextual text and generate speech accordingly.
+  To achieve this task, we reorganize a synthetic dataset and develop an effective end-to-end framework. Experiments show that our framework can generate high-quality expressive speech based on the given context both in synthetic dataset and real-world scenario.	</p>
 	<center><img src='fig/frame2.png' style="width: 600px;"></center>
 <br><br>
 
@@ -91,7 +92,6 @@ Thanks to the success of deep learning, neural network-based generative model ca
 
 <br><br>
 <h2>3. Demos -- Zeroshot Emotional speech synthesis on novel <a name="prediction"></a></h2>
-<!--<h3>Corresponding to Section 5.2 in our paper, below lists the samples that are synthesized for evaluations on emotion prediction from input text only. We compared MsEmoTTS (proposed) with the TPSE-GST model.</h3>-->
 
 <p><b>Short summary:</b> ......</p>
 
