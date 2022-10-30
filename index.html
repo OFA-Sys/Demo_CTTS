@@ -43,10 +43,7 @@
 
 <br><br>
 <h2 id="abstract">1. Abstract<a name="abstract"></a></h2>
-<p> The  goal of expressive Text-to-speech (TTS) is to synthesize natural speech with high expressiveness given content, prosody, emotion, timbre, etc.
-  Previous works use reference speeches or explicit labels to control TTS. However, reference speeches do not always exist, and explicit labels could merely cover few aspects of speaker's emotion, personality or identity.
-  In this paper, we, for the first time,  introduce a new task setting, \textbf{semantic context-controlled TTS} (CTTS), directly learning the overall information from contextual text and generate speech accordingly.
-  To achieve this task, we reorganize a synthetic dataset and develop an effective end-to-end framework. Experiments show that our framework can generate high-quality expressive speech based on the given context both in synthetic dataset and real-world scenario.	</p>
+<p> The goal of expressive Text-to-speech (TTS) is to synthesize natural speech with desired content, prosody, emotion, or timbre, in high expressiveness. Most of previous studies attempt to generate speech from given labels of styles and emotions, which over-simplifies the problem by classifying styles and emotions into a fixed number of pre-defined categories. In this paper, we introduce a new task setting, Contextual TTS (CTTS). The main idea of CTTS is that how a person speaks depends on the particular context she is in, where the context can typically be represented as text. Thus, in the CTTS task, we propose to utilize such context to guide the speech synthesis process instead of relying on explicit labels of styles and emotions. To achieve this task, we construct a synthetic dataset and develop an effective framework. Experiments show that our framework can generate high-quality expressive speech based on the given context both in synthetic datasets and real-world scenarios. </p>
 	<center><img src='fig/frame2.png' style="width: 600px;"></center>
 <br><br>
 
@@ -58,7 +55,7 @@
 <!--  </thead>-->
   <tbody>
     <tr>
-      <td style="text-align: center"><strong>Controlling Text</strong></td>
+      <td style="text-align: center"><strong>Context</strong></td>
       <td style="text-align: left" colspan=5> xxxxxxxxxxxxx</td>
     </tr>
 	<tr>
@@ -98,7 +95,7 @@
         <!--  </thead>-->
         <tbody>
         <tr>
-            <td style="text-align: center"><strong>Controlling Text</strong></td>
+            <td style="text-align: center"><strong>Context</strong></td>
             <td style="text-align: left" colspan=5> roar with the laughter and say: </td>
         </tr>
         <tr>
@@ -107,37 +104,63 @@
         </tr>
         <tr>
             <td style="text-align: center" rowspan=1><strong>Label</strong></td>
-            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jennie</td>
+            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jenie</td>
         </tr>
         <tr>
             <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
-            <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td>
+            <!-- <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td> -->
             <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
             <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
             <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
             <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
         </tr>
         <tr>
-<!--            <td style="text-align: left"><audio src="samples/test/ref/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-<!--            <td style="text-align: left"><audio src="samples/test/M-TTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: center" rowspan=2> </td>
+            <!-- <td style="text-align: center" rowspan=2> </td> -->
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-TTS/jenie_Love_in_the_Time_of_Cholera_12.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
             <td style="text-align: left"><audio src="samples/novel/M-CTTS/jenie_Love_in_the_Time_of_Cholera_12.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: center" rowspan=2> </td>
-<!--            <td style="text-align: left"><audio src="samples/test/M-LTTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-<!--            <td style="text-align: left"><audio src="samples/test/M-CTTS-NT/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
+            <td style="text-align: center" rowspan=2><audio src="samples/novel/M-LTTS/jenie_Love_in_the_Time_of_Cholera_12.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-CTTS-NT/jenie_Love_in_the_Time_of_Cholera_12.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
         </tr>
 
+        </tbody>
+    </table>   
+    
+    <table>
+        <tbody>
+        <tr>
+            <td style="text-align: center"><strong>Context</strong></td>
+            <td style="text-align: left" colspan=5> with a very sweet smile , said to him </td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+            <td style="text-align: left" colspan=5> Thank you for coming. </td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jenie</td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+            <!-- <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td> -->
+            <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+            <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+            <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+            <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+        </tr>
+        <tr>
+            <!-- <td style="text-align: center" rowspan=2> </td> -->
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-TTS/jenie_Love_in_the_Time_of_Cholera_5.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+            <td style="text-align: left"><audio src="samples/novel/M-CTTS/jenie_Love_in_the_Time_of_Cholera_5.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+            <td style="text-align: center" rowspan=2><audio src="samples/novel/M-LTTS/jenie_Love_in_the_Time_of_Cholera_5.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-CTTS-NT/jenie_Love_in_the_Time_of_Cholera_5.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        </tr>
         </tbody>
     </table>
 
     <table>
-        <!--  <thead>-->
-        <!--  </thead>-->
         <tbody>
         <tr>
-            <td style="text-align: center"><strong>Controlling Text</strong></td>
+            <td style="text-align: center"><strong>Context</strong></td>
             <td style="text-align: left" colspan=5> One day, at the height of desperation, she had shouted at him </td>
         </tr>
         <tr>
@@ -146,108 +169,476 @@
         </tr>
         <tr>
             <td style="text-align: center" rowspan=1><strong>Label</strong></td>
-            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jennie</td>
+            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jenie</td>
         </tr>
         <tr>
             <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
-            <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td>
+            <!-- <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td> -->
             <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
             <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
             <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
             <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
         </tr>
         <tr>
-            <!--            <td style="text-align: left"><audio src="samples/test/ref/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-            <!--            <td style="text-align: left"><audio src="samples/test/M-TTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: center" rowspan=2> </td>
+            <!-- <td style="text-align: center" rowspan=2> </td> -->
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-TTS/jenie_Love_in_the_Time_of_Cholera_8.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
             <td style="text-align: left"><audio src="samples/novel/M-CTTS/jenie_Love_in_the_Time_of_Cholera_8.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: center" rowspan=2> </td>
-            <!--            <td style="text-align: left"><audio src="samples/test/M-LTTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-            <!--            <td style="text-align: left"><audio src="samples/test/M-CTTS-NT/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
+            <td style="text-align: center" rowspan=2><audio src="samples/novel/M-LTTS/jenie_Love_in_the_Time_of_Cholera_8.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-CTTS-NT/jenie_Love_in_the_Time_of_Cholera_8.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
         </tr>
-
         </tbody>
     </table>
 
+    <table>
+        <tbody>
+        <tr>
+            <td style="text-align: center"><strong>Context</strong></td>
+            <td style="text-align: left" colspan=5> despit all her self-control , she lost her temper with a histor cri </td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+            <td style="text-align: left" colspan=5> To hell with the Archbishop! </td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+            <!-- <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td> -->
+            <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+            <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+            <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+            <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+        </tr>
+        <tr>
+            <!-- <td style="text-align: center" rowspan=2> </td> -->
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-TTS/bea_Love_in_the_Time_of_Cholera_10.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+            <td style="text-align: left"><audio src="samples/novel/M-CTTS/bea_Love_in_the_Time_of_Cholera_10.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+            <td style="text-align: center" rowspan=2><audio src="samples/novel/M-LTTS/bea_Love_in_the_Time_of_Cholera_10.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-CTTS-NT/bea_Love_in_the_Time_of_Cholera_10.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        </tr>
+        </tbody>
+    </table>
 
+    <!-- <table>
+        <tbody>
+        <tr>
+            <td style="text-align: center"><strong>Context</strong></td>
+            <td style="text-align: left" colspan=5> she laugh again </td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+            <td style="text-align: left" colspan=5> Go make fun of your bitch ofa mother, may she rest in peace.  </td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+            <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+            <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+            <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+            <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-TTS/bea_Love_in_the_Time_of_Cholera_2.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+            <td style="text-align: left"><audio src="samples/novel/M-CTTS/bea_Love_in_the_Time_of_Cholera_2.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+            <td style="text-align: center" rowspan=2><audio src="samples/novel/M-LTTS/bea_Love_in_the_Time_of_Cholera_2.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-CTTS-NT/bea_Love_in_the_Time_of_Cholera_2.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        </tr>
+        </tbody>
+    </table> -->
+
+
+    <table>
+        <tbody>
+        <tr>
+            <td style="text-align: center"><strong>Context</strong></td>
+            <td style="text-align: left" colspan=5> his subordin joke good - natur </td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+            <td style="text-align: left" colspan=5> You can't teach an old dog new tricks.  </td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+        </tr>
+        <tr>
+            <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+            <!-- <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td> -->
+            <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+            <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+            <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+            <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+        </tr>
+        <tr>
+            <!-- <td style="text-align: center" rowspan=2> </td> -->
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-TTS/bea_Love_in_the_Time_of_Cholera_3.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+            <td style="text-align: left"><audio src="samples/novel/M-CTTS/bea_Love_in_the_Time_of_Cholera_3.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+            <td style="text-align: center" rowspan=2><audio src="samples/novel/M-LTTS/bea_Love_in_the_Time_of_Cholera_3.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+            <td style="text-align: center" rowspan=2> <audio src="samples/novel/M-CTTS-NT/bea_Love_in_the_Time_of_Cholera_3.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        </tr>
+        </tbody>
+    </table>
 
 <p><b>Short summary:</b> ......</p>
 
 <br><br>
 <h2>4. Demos -- Zeroshot Emotional speech synthesis on handwriting context <a name="control"></a></h2>
-    <table>
-        <!--  <thead>-->
-        <!--  </thead>-->
-        <tbody>
-        <tr>
-            <td style="text-align: center"><strong>Controlling Text</strong></td>
-            <td style="text-align: left" colspan=5> Today is a good day. The sun is shining brightly. </td>
-        </tr>
-        <tr>
-            <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
-            <td style="text-align: left" colspan=5> Yes, it was a man who asked, a stranger. </td>
-        </tr>
-        <tr>
-            <td style="text-align: center" rowspan=1><strong>Label</strong></td>
-            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jennie</td>
-        </tr>
-        <tr>
-            <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
-            <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td>
-            <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
-            <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
-            <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
-            <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
-        </tr>
-        <tr>
-            <!--            <td style="text-align: left"><audio src="samples/test/ref/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-            <!--            <td style="text-align: left"><audio src="samples/test/M-TTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/jenie_handswrite_3_57-84_0063.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: center" rowspan=2> </td>
-            <!--            <td style="text-align: left"><audio src="samples/test/M-LTTS/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-            <!--            <td style="text-align: left"><audio src="samples/test/M-CTTS-NT/bea_bea_amused_1-15_0002.wav" style="width: 150px;" controls="" preload=""></audio></td>-->
-        </tr>
 
-        </tbody>
-    </table>
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> things are getting better, </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> A dead man is of no use on a plantation. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/bea_handswrite_2_197-224_0220.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/bea_handswrite_2_197-224_0220.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/bea_handswrite_2_197-224_0220.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/bea_handswrite_2_197-224_0220.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
 
-    <table>
-        <tbody>
-        <tr>
-            <td style="text-align: center"><strong>Controlling Text</strong></td>
-            <td style="text-align: left" colspan=5> The speaker becomes serious. </td>
-        </tr>
-        <tr>
-            <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
-            <td style="text-align: left" colspan=5> Besides, he was paid one case of tobacco per head. </td>
-        </tr>
-        <tr>
-            <td style="text-align: center" rowspan=1><strong>Label</strong></td>
-            <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jennie</td>
-        </tr>
-        <tr>
-            <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
-            <td style="text-align: center" colspan=1> <strong>Ref </strong></center</td>
-            <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
-            <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
-            <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
-            <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
-        </tr>
-        <tr>
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/jenie_handswrite_6_197-224_0214.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
-            <td style="text-align: center" rowspan=2> </td>
-            <td style="text-align: center" rowspan=2> </td>
-        </tr>
+    </tbody>
+</table>
 
-        </tbody>
-    </table>
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> things are getting better, </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> The girl faced him, her eyes shining with sudden fear. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/bea_handswrite_2_27-56_0046.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/bea_handswrite_2_27-56_0046.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/bea_handswrite_2_27-56_0046.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/bea_handswrite_2_27-56_0046.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> her eyes ablaze with anger, </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> Philip began to feel that he had foolishly overestimated his strength. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/bea_handswrite_0_113-140_0133.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/bea_handswrite_0_113-140_0133.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/bea_handswrite_0_113-140_0133.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/bea_handswrite_0_113-140_0133.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> it a disgusting situtation. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> You want to go over and see his gang throw dirt. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/bea_handswrite_1_141_168_0160.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/bea_handswrite_1_141_168_0160.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/bea_handswrite_1_141_168_0160.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/bea_handswrite_1_141_168_0160.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> today is a good day. the sun is shining brightly. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> These rumors may even originate with us. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/bea_handswrite_3_367-392_0365.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/bea_handswrite_3_367-392_0365.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/bea_handswrite_3_367-392_0365.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/bea_handswrite_3_367-392_0365.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> the speaker is shocked. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> What do you mean by this outrageous conduct. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Bea</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/bea_handswrite_4_421-448_0435.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/bea_handswrite_4_421-448_0435.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/bea_handswrite_4_421-448_0435.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/bea_handswrite_4_421-448_0435.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> Today is a good day. The sun is shining brightly. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> Yes, it was a man who asked, a stranger. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jenie</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-TTS/jenie_handswrite_3_57-84_0063.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/jenie_handswrite_3_57-84_0063.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/jenie_handswrite_3_57-84_0063.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-CTTS-NT/jenie_handswrite_3_57-84_0063.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> her eyes ablaze with anger. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> Gregson had left the outer door slightly ajar. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jenie</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/jenie_handswrite_0_169-196_0172.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/jenie_handswrite_0_169-196_0172.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/jenie_handswrite_0_169-196_0172.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/jenie_handswrite_0_169-196_0172.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> the speaker is cheerful. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> Pearce's little eyes were fixed on him shrewdly. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jenie</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/jenie_handswrite_5_29-56_0056.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/jenie_handswrite_5_29-56_0056.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/jenie_handswrite_5_29-56_0056.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/jenie_handswrite_5_29-56_0056.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> the speaker becomes serious. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> Bassett was a fastidious man. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jenie</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/jenie_handswrite_6_281-308_0296.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/jenie_handswrite_6_281-308_0296.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/jenie_handswrite_6_281-308_0296.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/jenie_handswrite_6_281-308_0296.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table>
+    <tbody>
+    <tr>
+        <td style="text-align: center"><strong>Context</strong></td>
+        <td style="text-align: left" colspan=5> speaking with a great of joyness. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Content Text</strong></td>
+        <td style="text-align: left" colspan=5> His beady black eyes saw bargains where other men saw bankruptcy. </td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=1><strong>Label</strong></td>
+        <td style="text-align: left" colspan=5> Emotion: Unknown, Speaker: Jenie</td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><strong>Performance</strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-TTS </strong></td>
+        <td style="text-align: center" colspan=1>  <strong>M-CTTS </strong></td>
+        <td style="text-align: center" colspan=1><strong> M-LTTS</strong> </td>
+        <td style="text-align: center" colspan=1> <strong>M-CTTS-NT </strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-TTS/jenie_handswrite_7_477-504_0503.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+        <td style="text-align: left"><audio src="samples/handswrite/M-CTTS/jenie_handswrite_7_477-504_0503.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2> <audio src="samples/handswrite/M-LTTS/jenie_handswrite_7_477-504_0503.wav.mp3" style="width: 150px;" controls="" preload=""></audio></td>
+        <td style="text-align: center" rowspan=2><audio src="samples/handswrite/M-CTTS-NT/jenie_handswrite_7_477-504_0503.wav.mp3" style="width: 150px;" controls="" preload=""></audio> </td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
 
 
     <p><b>Short summary:</b> The .....</p>
